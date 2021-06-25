@@ -34,7 +34,7 @@
 		<%@ include file="nav.html" %>
 		<form action="AdminPwdController" method="post">
 	  		<label for="password">Change Admin Password:</label>
-	  		<input type="password" id="password" name="password">
+	  		<input type="password" id="password" name="password" required="required">
 	  		<input type="submit" value="Submit">&nbsp;<c:if test="${passwordActionMsg != null && passwordActionMsg.length() != 0}">${passwordActionMsg}</c:if>
 		</form>
 		<a href='LogoutServlet'>Logout</a>
@@ -91,7 +91,7 @@
 				<th>Origin</th>
 				<th>Destination</th>
 				<th>Airline</th>
-				<th>Price</th>
+				<th>Ticket Price</th>
 				<th>Delete</th>
 			</tr>
 			<c:forEach var="elmt" items="${flightList}" >  
@@ -100,7 +100,7 @@
 					<td>${elmt.getOrigin().getLocationName()}</td>
 					<td>${elmt.getDestination().getLocationName()}</td> 
 					<td>${elmt.getAirline().getAirlineName()}</td> 
-					<td>${elmt.getTicketPrice()}</td>  
+					<td>$${elmt.getTicketPrice()}</td>  
 					<td><a href="FlightController?action=delete&id=${elmt.getFlightId()}">Delete</a></td>
 				</tr>  
 			</c:forEach> 
