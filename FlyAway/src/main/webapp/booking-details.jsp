@@ -9,7 +9,6 @@
 <title>flyAway - Booking Details</title>
 </head>
 <body>
-	<%@ include file="nav.html" %>
 	<%
 		Booking booking = (Booking)request.getAttribute("booking");
 		
@@ -25,14 +24,13 @@
 		}
 	%>
 
-	<h1>Flight Summary</h1>
 	<br>
 	Trip Date: ${tripDate}
 	<br>
 	<br>
 	<table border="1" width="90%">
 		<tr>
-			<th>FlightId</th>
+			<th>Flight Id</th>
 			<th>Origin</th>
 			<th>Destination</th>
 			<th>Airline</th>
@@ -43,7 +41,7 @@
 			<td>${flight.getOrigin().getLocationName()}</td>
 			<td>${flight.getDestination().getLocationName()}</td> 
 			<td>${flight.getAirline().getAirlineName()}</td> 
-			<td>${flight.getTicketPrice()}</td>
+			<td>$${flight.getTicketPrice()}</td>
 		</tr>
 	</table>
 	<h1>Passenger Information</h1>
@@ -60,6 +58,6 @@
 		</c:forEach>
 	</table>
 	<br>
-	Total Price: ${totalPrice}
+	Total Price: $${totalPrice}
 </body>
 </html>

@@ -12,6 +12,8 @@
 	<%
 		request.setAttribute("booking", session.getAttribute("completedBooking"));
 	%>
+	<%@ include file="nav.html" %>
+	<h1>Booking Summary and Payment</h1>
 	<%@ include file="booking-details.jsp" %>
 	<br>
 	<form action="booking-complete.jsp" method="post">
