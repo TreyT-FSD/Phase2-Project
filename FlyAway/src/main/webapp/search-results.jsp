@@ -13,17 +13,14 @@
 		request.setAttribute("passengerCount", request.getParameter("passengerCount"));
 		request.setAttribute("tripDate", request.getParameter("tripDate"));
 	%>
-	<br>	
-	Trip Date: ${tripDate}
-	<br>
-	<br>
+	<h1>Flight Search Results</h1>
 	<table border="1" width="90%">
 		<tr>
-			<th>Id</th>
+			<th>Flight Id</th>
 			<th>Origin</th>
 			<th>Destination</th>
 			<th>Airline</th>
-			<th>Price</th>
+			<th>Ticket Price</th>
 			<th>Delete</th>
 		</tr>
 		<c:forEach var="elmt" items="${matchingFlights}" >  
@@ -32,7 +29,7 @@
 				<td>${elmt.getOrigin().getLocationName()}</td>
 				<td>${elmt.getDestination().getLocationName()}</td> 
 				<td>${elmt.getAirline().getAirlineName()}</td> 
-				<td>${elmt.getTicketPrice()}</td>  
+				<td>$${elmt.getTicketPrice()}</td>  
 				<td><a href="booking.jsp?tripDate=${tripDate}&id=${elmt.getFlightId()}&passengerCount=${passengerCount}">Select</a></td>
 			</tr>  
 		</c:forEach>
