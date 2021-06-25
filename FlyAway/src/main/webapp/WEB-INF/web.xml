@@ -54,4 +54,14 @@
     <servlet-name>LocationController</servlet-name>
     <url-pattern>/LocationController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminPwdController</display-name>
+    <servlet-name>AdminPwdController</servlet-name>
+    <servlet-class>com.app.controller.AdminPwdController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminPwdController</servlet-name>
+    <url-pattern>/AdminPwdController</url-pattern>
+  </servlet-mapping>
 </web-app>

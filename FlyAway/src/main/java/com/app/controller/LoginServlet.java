@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.app.dao.AdminPwdDAO;
 import com.app.dao.AirlineDAO;
 
 /**
@@ -36,13 +37,12 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		
-		if(password.compareTo("123") == 0) {
+		if(password.compareTo(AdminPwdDAO.getAdminPwd()) == 0) {
 			
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("username", username);
 			session.setAttribute("authenticated", "True");
-			request.setAttribute("listAirline", AirlineDAO.getAirlines());
 			
 			request.getRequestDispatcher("admin.jsp").forward(request, response);
 			

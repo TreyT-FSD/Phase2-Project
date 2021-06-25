@@ -54,6 +54,15 @@ public class FlightDAO {
 		return flight;
 	}
 	
+	public static Flight getFlight(int id) {
+		Flight flight = null;
+	
+		Session session = HybernateUtil.getSessionFactory().openSession();
+		flight = session.get(Flight.class, id);
+		
+		return flight;
+	}
+	
 	public static boolean addFlight(Flight flight) {
 		//TODO: maybe do some input validation on flight
 		boolean success = false;

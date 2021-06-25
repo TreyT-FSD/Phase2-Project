@@ -17,31 +17,26 @@
 			if(session == null){
 				//send user to login page
 				request.getRequestDispatcher("login.jsp").forward(request, response);
-			}
+			}	
 		
 			String isAuthenticated = (String) session.getAttribute("authenticated");
 			
 			if(isAuthenticated != null && isAuthenticated.compareTo("True") == 0){
-				
-				//request.setAttribute("airlineList", AirlineDAO.getUniqueAirlines());
-				//request.setAttribute("locationList", LocationDAO.getUniqueLocations());
-				//request.setAttribute("flightList", FlightDAO.getFlights());
-				
 				request.setAttribute("airlineList", AirlineDAO.getAirlines());
 				request.setAttribute("locationList", LocationDAO.getLocations());
 				request.setAttribute("flightList", FlightDAO.getFlights());
-				
-				
-				
 			}
 			else{
 				//send user to login page
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
-		
 		%>
-		
 		<%@ include file="nav.html" %>
+		<form action="AdminPwdController" method="post">
+	  		<label for="password">Change Admin Password:</label>
+	  		<input type="password" id="password" name="password">
+	  		<input type="submit" value="Submit">&nbsp;<c:if test="${passwordActionMsg != null && passwordActionMsg.length() != 0}">${passwordActionMsg}</c:if>
+		</form>
 		<a href='LogoutServlet'>Logout</a>
 		<br>
 		<br>
@@ -68,9 +63,7 @@
 			<label for="airlineName">Airline Name:</label>
 			<input type="text" id="airlineName" name="airlineName" required="required">
 			<input type="submit" value="Add Airline" >&nbsp;<c:if test="${airlineActionMsg != null && airlineActionMsg.length() != 0}">${airlineActionMsg}</c:if>
-		</form>
-		
-		
+		</form>		
 		<h2>Locations</h2>
 		<table border="1" width="90%">
 			<tr>
@@ -85,16 +78,12 @@
 				<td><a href="LocationController?action=delete&id=${elmt.getLocationId()}">Delete</a></td>
 			</tr>  
 			</c:forEach> 
-		</table>
-		
+		</table>		
 		<form action="LocationController" method="post">
 			<label for="location">Location</label>
 			<input type="text" id="locationName" name="locationName" required="required">
 			<input type="submit" value="Add Location">&nbsp;<c:if test="${locationActionMsg != null && locationActionMsg.length() != 0}">${locationActionMsg}</c:if>
-		</form>
-		
-		
-		
+		</form>		
 		<h2>Flights</h2>
 		<table border="1" width="90%">
 			<tr>
@@ -115,8 +104,7 @@
 					<td><a href="FlightController?action=delete&id=${elmt.getFlightId()}">Delete</a></td>
 				</tr>  
 			</c:forEach> 
-		</table>
-		
+		</table>		
 		<form action="FlightController" method="post">
 			<label for="originName">Origin:</label>
 			<select id="originName" name="originName" required="required" style="width: 10%;">
@@ -124,8 +112,7 @@
 			<c:forEach var="elmt" items="${locationList}" >
 				<option value="${elmt.getLocationName()}">${elmt.getLocationName()}</option>
 			</c:forEach>
-			</select>
-			
+			</select>			
 			<label for="destinationName">Destination:</label>
 			<select id="destinationName" name="destinationName" required="required" style="width: 10%;">
 			<option value=""></option>
@@ -133,8 +120,6 @@
 				<option value="${elmt.getLocationName()}">${elmt.getLocationName()}</option>
 			</c:forEach>
 			</select>
-			
-			
 			<label for="airlineName">Airline Name:</label>
 			<select id="airlineName" name="airlineName" required="required" style="width: 10%;">
 			<option value=""></option>
@@ -142,16 +127,9 @@
 				<option value="${elmt.getAirlineName()}">${elmt.getAirlineName()}</option>
 			</c:forEach>
 			</select>
-			
 			<label for="ticketPrice">Ticket Price:</label>
 			<input type="text" id="ticketPrice" name="ticketPrice" required="required" style="width: 10%;">
-			
 			<input type="submit" value="Add Flight">&nbsp;<c:if test="${flightActionMsg != null && flightActionMsg.length() != 0}">${flightActionMsg}</c:if>
 		</form>
-		
-		
-		
-		
-		
 	</body>
 </html>
