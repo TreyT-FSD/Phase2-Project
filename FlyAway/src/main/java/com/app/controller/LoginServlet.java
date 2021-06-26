@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.app.dao.AdminPwdDAO;
+import com.app.dao.AirlineDAO;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -20,7 +23,7 @@ public class LoginServlet extends HttpServlet {
      */
     public LoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
@@ -33,7 +36,8 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		if(password.compareTo("pass") == 0) {
+		
+		if(password.compareTo(AdminPwdDAO.getAdminPwd()) == 0) {
 			
 			HttpSession session = request.getSession();
 			
